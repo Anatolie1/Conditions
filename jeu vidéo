@@ -1,0 +1,61 @@
+using System;
+
+namespace Les_Classes
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Character gladiator1 = new Character();
+            gladiator1.name = "Asterix";
+            gladiator1.pointLife = 10000;
+            gladiator1.attackPower = 200;
+            gladiator1.defensePower = 300;
+
+            Character gladiator2 = new Character();
+            gladiator2.name = "Cesar";
+            gladiator2.pointLife = 20000;
+            gladiator2.attackPower = 200;
+            gladiator2.defensePower = 300;
+
+            Console.WriteLine("Name of the first gladiator is {0} and he has {1} life points, {2} power attack and {3} defense power", gladiator1.name, gladiator1.pointLife, gladiator1.attackPower, gladiator1.defensePower);
+            Console.WriteLine("Name of the second gladiator is {0} and he has {1} life points, {2} power attack and {3} defense power", gladiator2.name, gladiator2.pointLife, gladiator2.attackPower, gladiator2.defensePower);
+
+            while (gladiator1.IsAlive() && gladiator2.IsAlive())
+            {
+                gladiator2.Attack(gladiator1);
+                gladiator1.Attack(gladiator2);
+            }
+
+            if (gladiator1.pointLife > 0)
+            {
+                Console.WriteLine("Winner is Asterix with resting {0} life points", gladiator1.pointLife);
+                Console.WriteLine("Loser is Cesar with resting {0} life points", gladiator2.pointLife);
+            }
+            else
+            {
+                Console.WriteLine("Winner is Cesar with resting {0} life points", gladiator2.pointLife);
+                Console.WriteLine("Loser is Asterix with resting {0} life points", gladiator1.pointLife);
+            }
+        }
+    }
+
+    public class Character
+    {
+        public string name;
+        public int pointLife;
+        public int attackPower;
+        public int defensePower;
+
+        public bool IsAlive()
+        {
+            return pointLife > 0;
+        }
+
+        public int Attack(Character ennemy)
+        {
+            ennemy.pointLife = ennemy.pointLife - Math.Abs(attackPower - ennemy.defensePower );
+            return pointLife;
+        }
+    }
+}
