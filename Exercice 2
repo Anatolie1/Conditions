@@ -1,0 +1,40 @@
+using System;
+
+namespace _1._Les_conditions
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] moves = new string[32];
+            int Nbsteps = 0;
+
+            while (Nbsteps < 32)
+            {
+                string step = Console.ReadLine();
+                if (step != "done")
+                {
+                    moves[Nbsteps] = step;
+                    Nbsteps++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Console.Write("Choose number of repeat danse : ");
+            int NbRepeat = int.Parse(Console.ReadLine());
+
+            int i = 1;
+            while(i <= NbRepeat)
+            {
+                foreach (string DanceSteps in moves)
+                {
+                    Console.Write(DanceSteps + "    ");
+                }
+                Console.WriteLine();
+                i++;
+            }
+        }
+    }
+}
