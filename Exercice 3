@@ -1,0 +1,66 @@
+using System;
+
+namespace _1._Les_conditions
+{
+    class Program
+    {
+        public static float addition(float x, float y)
+        {
+            return x + y;
+        }
+        public static float substraction(float x, float y)
+        {
+            return x - y;
+        }
+        public static float multiply(float x, float y)
+        {
+            return x * y;
+        }
+        public static float divide(float x, float y)
+        {
+            if (y != 0.0)
+            {
+                return x / y;
+            }
+            else
+                return -1;
+        }
+        public static int modulo(int x, int y)
+        {
+            return x % y;
+        }
+
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("First operand : ");
+            float FirstOperand = float.Parse(Console.ReadLine());
+            Console.WriteLine("Second operand : ");
+            float SecondOperand = float.Parse(Console.ReadLine());
+            Console.WriteLine("Choose an operation: addition, substraction, multiply, divide, modulo : ");
+            string Operation = Console.ReadLine();
+
+            switch (Operation)
+            {
+                case "addition":
+                    Console.WriteLine(addition(FirstOperand, SecondOperand));
+                    break;
+                case "substraction":
+                    Console.WriteLine(substraction(FirstOperand, SecondOperand));
+                    break;
+                case "multiply":
+                    Console.WriteLine(multiply(FirstOperand, SecondOperand));
+                    break;
+                case "divide":
+                    Console.WriteLine(divide(FirstOperand, SecondOperand));
+                    break;
+                case "modulo":
+                    Console.WriteLine(modulo((int)FirstOperand, (int)SecondOperand));
+                    break;
+                default:
+                    Console.WriteLine("This operation does not exist");
+                    break;
+            }
+        }
+    }
+}
