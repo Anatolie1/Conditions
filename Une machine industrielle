@@ -1,0 +1,57 @@
+using System;
+
+namespace Une_machine_industrielle
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            BeerEncapsulator beerEncapsulator = new BeerEncapsulator();
+            int n = 18; // Number of bottles of beer to produse
+            int craftedBeersCount = beerEncapsulator.ProduceEncapsulatedBeerBottles(n);
+            beerEncapsulator.AddBeer(n);
+
+            Console.WriteLine("The message of 'ProduceEncapsulatedBeerBottles' is : {0} ", craftedBeersCount);
+            Console.WriteLine();
+            Console.WriteLine("To produse {0} bottles of beer the status of row materials will be : ", n );
+            Console.WriteLine("{0} litters of beer, {1} bottles and {2} capsules ('-' means insuficient materials)", beerEncapsulator.GetAvalaibleBeerVolume(), beerEncapsulator.GetAvalaibleBottles(), beerEncapsulator.GetAvalaibleCapsules());
+        }
+    }
+    class BeerEncapsulator
+    {
+        private decimal _avalaibleBeerVolume = 5.85m;
+        private int _avalaibleBottles = 18;
+        private int _avalaibleCapsules = 19;
+
+        public int AddBeer(int bottlesCount)
+        {
+            _avalaibleBeerVolume = _avalaibleBeerVolume - 0.33m * bottlesCount;
+            _avalaibleBottles = _avalaibleBottles - bottlesCount;
+            _avalaibleCapsules = _avalaibleCapsules - bottlesCount;
+            return 0;
+        }
+        public int ProduceEncapsulatedBeerBottles(int bottlesCount)
+        {
+            int craftedBeers = 0;
+            if (_avalaibleBeerVolume >= 0.33m * bottlesCount && _avalaibleBottles >= bottlesCount && _avalaibleCapsules >= bottlesCount)
+            {
+                craftedBeers = bottlesCount;
+            }
+            return craftedBeers;
+        }
+        public decimal GetAvalaibleBeerVolume()
+        {
+            return _avalaibleBeerVolume;
+        }
+
+        public int GetAvalaibleBottles()
+        {
+            return _avalaibleBottles;
+        }
+
+        public int GetAvalaibleCapsules()
+        {
+            return _avalaibleCapsules;
+        }
+    } 
+}
