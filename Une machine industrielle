@@ -8,14 +8,14 @@ namespace Une_machine_industrielle
         {
             BeerEncapsulator beerEncapsulator = new BeerEncapsulator();
 
-            beerEncapsulator.Parameters();
-            beerEncapsulator.AddBeer();
+            beerEncapsulator.Parameters();            
 
             int craftedBeersCount = beerEncapsulator.GetbottlesCount();
             beerEncapsulator.ProduceEncapsulatedBeerBottles(craftedBeersCount);
 
             Console.WriteLine("The message of 'ProduceEncapsulatedBeerBottles' is : {0} ", beerEncapsulator.ProduceEncapsulatedBeerBottles(craftedBeersCount));
             Console.WriteLine();
+            beerEncapsulator.AddBeer();
             Console.WriteLine("To produse {0} bottles of beer the status of row materials will be : ", craftedBeersCount);
             Console.WriteLine("{0} litters of beer, {1} bottles and {2} capsules ('-' means insuficient materials)", beerEncapsulator.GetAvalaibleBeerVolume(), beerEncapsulator.GetAvalaibleBottles(), beerEncapsulator.GetAvalaibleCapsules());
         }
@@ -46,12 +46,11 @@ namespace Une_machine_industrielle
         }
         public int ProduceEncapsulatedBeerBottles(int bottlesCount)
         {
-            int craftedBeers = 0;
             if (_avalaibleBeerVolume >= 0.33m * bottlesCount && _avalaibleBottles >= bottlesCount && _avalaibleCapsules >= bottlesCount)
             {
-                craftedBeers = bottlesCount;
+                return _bottlesCount;
             }
-            return craftedBeers;
+            return 0;
         }
         public decimal GetAvalaibleBeerVolume()
         {
