@@ -7,28 +7,42 @@ namespace Une_machine_industrielle
         static void Main(string[] args)
         {
             BeerEncapsulator beerEncapsulator = new BeerEncapsulator();
-            int n = 18; // Number of bottles of beer to produse
-            int craftedBeersCount = beerEncapsulator.ProduceEncapsulatedBeerBottles(n);
-            beerEncapsulator.AddBeer(n);
 
-            Console.WriteLine("The message of 'ProduceEncapsulatedBeerBottles' is : {0} ", craftedBeersCount);
+            beerEncapsulator.Parameters();
+            beerEncapsulator.AddBeer();
+
+            int craftedBeersCount = beerEncapsulator.GetbottlesCount();
+            beerEncapsulator.ProduceEncapsulatedBeerBottles(craftedBeersCount);
+
+            Console.WriteLine("The message of 'ProduceEncapsulatedBeerBottles' is : {0} ", beerEncapsulator.ProduceEncapsulatedBeerBottles(craftedBeersCount));
             Console.WriteLine();
-            Console.WriteLine("To produse {0} bottles of beer the status of row materials will be : ", n );
+            Console.WriteLine("To produse {0} bottles of beer the status of row materials will be : ", craftedBeersCount);
             Console.WriteLine("{0} litters of beer, {1} bottles and {2} capsules ('-' means insuficient materials)", beerEncapsulator.GetAvalaibleBeerVolume(), beerEncapsulator.GetAvalaibleBottles(), beerEncapsulator.GetAvalaibleCapsules());
         }
     }
     class BeerEncapsulator
     {
-        private decimal _avalaibleBeerVolume = 5.85m;
-        private int _avalaibleBottles = 18;
-        private int _avalaibleCapsules = 19;
-
-        public int AddBeer(int bottlesCount)
+        private decimal _avalaibleBeerVolume;
+        private int _avalaibleBottles;
+        private int _avalaibleCapsules;
+        private int _bottlesCount;
+        public void Parameters()
         {
-            _avalaibleBeerVolume = _avalaibleBeerVolume - 0.33m * bottlesCount;
-            _avalaibleBottles = _avalaibleBottles - bottlesCount;
-            _avalaibleCapsules = _avalaibleCapsules - bottlesCount;
-            return 0;
+            Console.Write("Input volume of beer : ");
+            _avalaibleBeerVolume = Math.Abs(Convert.ToDecimal(Console.ReadLine()));
+            Console.Write("Inpup bottles number : ");
+            _avalaibleBottles = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+            Console.Write("Input number of capsules : ");
+            _avalaibleCapsules = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+            Console.Write("How many beers do you want manufacturing : ");
+            _bottlesCount = Math.Abs(Convert.ToInt32(Console.ReadLine()));
+        }        
+
+        public void AddBeer()
+        {
+            _avalaibleBeerVolume = _avalaibleBeerVolume - 0.33m * _bottlesCount;
+            _avalaibleBottles = _avalaibleBottles - _bottlesCount;
+            _avalaibleCapsules = _avalaibleCapsules - _bottlesCount;
         }
         public int ProduceEncapsulatedBeerBottles(int bottlesCount)
         {
@@ -52,6 +66,10 @@ namespace Une_machine_industrielle
         public int GetAvalaibleCapsules()
         {
             return _avalaibleCapsules;
+        }
+        public int GetbottlesCount()
+        {
+            return _bottlesCount;
         }
     } 
 }
